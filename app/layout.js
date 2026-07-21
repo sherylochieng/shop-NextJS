@@ -103,7 +103,7 @@ export default function RootLayout({ children }) {
               Mctaba <span style={{ color: "#ff7a00" }}>Shop</span>
             </Link>
             <div style={{ display: "flex", gap: "2rem" }}>
-              <a href="/products" style={{
+              <Link href="/products" style={{
                 fontWeight: 500,
                 fontSize: "2 rem",
                 color: "#333333",
@@ -111,8 +111,8 @@ export default function RootLayout({ children }) {
                 transition: "color 0.2s",
               }}>
                 Products
-              </a>
-              <a href="/about" style={{
+              </Link>
+              <Link href="/about" style={{
                 fontWeight: 500,
                 fontSize: "2 rem",
                 color: "#333333",
@@ -120,7 +120,7 @@ export default function RootLayout({ children }) {
                 transition: "color 0.2s",
               }}>
                 About
-              </a>
+              </Link>
             </div>
           </nav>
         </header>
