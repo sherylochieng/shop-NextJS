@@ -116,12 +116,26 @@ export async function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
 }
 
-export async function generateMetadata({ params }) {
-  const { slug } = await params;
+// export async function generateMetadata({ params }) {
+//   const { slug } = await params;
 
+//   let product;
+//   try {
+//     ({ product } = await apiFetch(`/api/products/${slug}`));
+//   } catch {
+//     return { title: "Product not found" };
+//   }
+
+//   return {
+//     title: product.name,
+//     description: product.description,
+//   };
+// }
+
+export async function generateMetadata({ params }) {
   let product;
   try {
-    ({ product } = await apiFetch(`/api/products/${slug}`));
+    ({ product } = await apiFetch(`/api/products/${params.slug}`));
   } catch {
     return { title: "Product not found" };
   }
@@ -129,6 +143,13 @@ export async function generateMetadata({ params }) {
   return {
     title: product.name,
     description: product.description,
+    openGraph: {
+      title: product.name,
+      description: `KSh ${(product.price_cents / 100).toLocaleString()} — ${product.description}`,
+      // No `images` key needed here.
+      // Next.js automatically wires the sibling opengraph-image.js output
+      // as the og:image for this page. Adding `images` here would override it.
+    },
   };
 }
 
